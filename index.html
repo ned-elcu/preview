@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Primăria Municipiului Slobozia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Reset & Body */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f4f7f9;
+            /* Subtle geometric background pattern */
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23dce4e9' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        /* Content Container */
+        .content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: clamp(20px, 4vw, 50px);
+            padding: clamp(20px, 5vw, 60px);
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            width: 100%;
+            max-width: 1200px;
+
+            /* Animation */
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Logo */
+        .logo {
+            width: clamp(84px, 21.6vw, 264px);
+            height: auto;
+            flex-shrink: 0;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .shine-wrapper {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+            -webkit-mask: url(#logo-mask);
+            mask: url(#logo-mask);
+        }
+
+        .shine-wrapper::before {
+            content: '';
+            position: absolute;
+            z-index: 2;
+            top: 0;
+            left: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.2) 30%,
+                rgba(255, 255, 255, 0.4) 50%,
+                rgba(255, 255, 255, 0.2) 70%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shine 5s linear infinite;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: skewX(-25deg) translateX(-150%);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.4;
+            }
+            80% {
+                opacity: 0.4;
+            }
+            100% {
+                transform: skewX(-25deg) translateX(300%);
+                opacity: 0;
+            }
+        }
+
+
+
+        /* Title */
+        .title-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .title-main {
+            font-family: 'Merriweather', serif;
+            color: #102A43; /* Deep blue */
+            font-size: clamp(2.34rem, 6.5vw, 6.5rem);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .title-sub {
+            font-family: 'Montserrat', sans-serif;
+            color: #334E68; /* Slightly lighter blue-gray */
+            font-size: clamp(1.105rem, 2.6vw, 2.34rem);
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: clamp(8px, 1.5vw, 16px);
+            line-height: 1.4;
+            border-left: 3px solid #829ab1;
+            padding-left: clamp(12px, 2vw, 20px);
+        }
+
+    </style>
+</head>
+<body>
+    <!-- SVG Mask Definition -->
+    <svg style="position: absolute; width: 0; height: 0; overflow: hidden;">
+        <defs>
+            <filter id="white-filter">
+                <feFlood flood-color="white" result="flood" />
+                <feComposite in="flood" in2="SourceAlpha" operator="in" />
+            </filter>
+            <mask id="logo-mask" maskUnits="objectBoundingBox" maskContentUnits="objectBoundingBox">
+                <image width="1" height="1" preserveAspectRatio="none" href="SVG/Asset 5.svg" filter="url(#white-filter)" />
+            </mask>
+        </defs>
+    </svg>
+
+    <div class="content">
+        <div class="logo-wrapper">
+            <div class="shine-wrapper">
+                <img src="SVG/Asset 5.svg" alt="Stema Municipiului Slobozia" class="logo">
+            </div>
+        </div>
+
+        <div class="title-container">
+            <h1 class="title-main">Primăria</h1>
+            <p class="title-sub">Municipiului<br>Slobozia</p>
+        </div>
+    </div>
+</body>
+</html>
